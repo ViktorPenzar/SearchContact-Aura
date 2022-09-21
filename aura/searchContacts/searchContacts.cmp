@@ -1,0 +1,45 @@
+<aura:component controller="SearchContactController" implements="flexipage:availableForAllPageTypes,force:hasRecordId" access="global" >
+    <aura:attribute name="recordId" type="Id" />
+    <aura:attribute name="data" type="List"/>
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="searchKey" type="String"/>
+    <aura:attribute name="searchValue" type="String"/>
+    <aura:handler name="init" value="{! this }" action="{! c.init }"/>
+    
+    <lightning:card variant="Narrow" title="Search Contacts List" iconName="standard:contact">
+        <lightning:layout>
+            <lightning:layoutItem padding="around-small" size="3">
+                <div class="page-section page-right slds-p-vertical_none">
+                    <p class="text">Search by Name:</p>
+                </div>
+            </lightning:layoutItem>
+            <lightning:layoutItem padding="around-small" size="5">
+                <div class="page-section page-right">
+                    <lightning:input
+                        type="search"
+                        onchange="{! c.handleWordChange}"
+                        variant="label-hidden"
+                        placeholder="Search for contacts"
+                        value="{! v.searchValue}">
+                    </lightning:input>
+                </div>
+            </lightning:layoutItem>
+            <lightning:layoutItem padding="around-small" size="3">
+                <div class="page-section page-right ">
+                    <lightning:button
+                        label="Find"
+                        onclick="{! c.handleSearchKeyword}"
+                        value="{! v.searchValue}"
+                        variant="brand">
+                    </lightning:button>
+                </div>
+            </lightning:layoutItem>
+        </lightning:layout>
+        <lightning:datatable 
+            data="{! v.data }"
+            columns="{! v.columns }"
+            keyField="id"
+            hideCheckboxColumn="true"
+            column-widths-mode="auto"/>
+    </lightning:card>
+</aura:component>
