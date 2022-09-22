@@ -45,9 +45,11 @@ private class SearchContactControllerTest {
             SELECT FirstName, LastName, Email, MobilePhone, Account.Name, CreatedDate 
             FROM Contact
         ];
+
         Test.startTest();
         List<Contact> returnedContacts =  SearchContactController.searchContacts('');
         Test.stopTest();
+
         System.assertEquals(newContacts, returnedContacts, 'Contacts were not received');
         System.assert(returnedContacts.size() == 10, 'Was expecting to find ten contacts');
     }
@@ -58,9 +60,11 @@ private class SearchContactControllerTest {
             SELECT FirstName, LastName, Email, MobilePhone, Account.Name, CreatedDate 
             FROM Contact
         ];
+
         Test.startTest();
         List<Contact> returnedContacts =  SearchContactController.searchContacts('&*');
         Test.stopTest();
+
         System.assert(returnedContacts.size() == 0, 'Was expecting to find no contacts');
     }
 
@@ -71,16 +75,11 @@ private class SearchContactControllerTest {
             FROM Contact
         ];
         delete contacts;
+
         Test.startTest();
-        
-        try {
-            SearchContactController.getContacts();
-        } catch (Exception e) {
-            if (e.getMessage().contains('Contacts are empty')) {
-                isException = true;
-            }
-        }
+        List<Contact> returnedContacts = SearchContactController.getContacts();
         Test.stopTest();
-        System.assert(isException, 'Contact should have thrown an exception');
+        
+        System.assert(returnedContacts.size() == 0, 'Was expecting to find no contacts');
     }
 }
