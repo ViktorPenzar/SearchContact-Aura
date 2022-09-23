@@ -1,5 +1,5 @@
 @isTest
-private class SearchContactControllerTest {
+private class AuraContactControllerTest {
 
     @testSetup
     static void createContacts() {
@@ -18,7 +18,7 @@ private class SearchContactControllerTest {
         ];
 
         Test.startTest();
-        List<Contact> returnedContacts = SearchContactController.getContacts();
+        List<Contact> returnedContacts = AuraContactController.getContacts();
         Test.stopTest();
 
         System.assertEquals(newContacts, returnedContacts, 'Contacts were not received');
@@ -33,7 +33,7 @@ private class SearchContactControllerTest {
         ];
 
         Test.startTest();
-        List<Contact> returnedContacts = SearchContactController.searchContacts('5');
+        List<Contact> returnedContacts = AuraContactController.searchContacts('5');
         Test.stopTest();
         
         System.assert(returnedContacts.size() > 0, 'Was expecting to find at least one contact');
@@ -47,7 +47,7 @@ private class SearchContactControllerTest {
         ];
 
         Test.startTest();
-        List<Contact> returnedContacts =  SearchContactController.searchContacts('');
+        List<Contact> returnedContacts =  AuraContactController.searchContacts('');
         Test.stopTest();
 
         System.assertEquals(newContacts, returnedContacts, 'Contacts were not received');
@@ -62,7 +62,7 @@ private class SearchContactControllerTest {
         ];
 
         Test.startTest();
-        List<Contact> returnedContacts =  SearchContactController.searchContacts('&*');
+        List<Contact> returnedContacts =  AuraContactController.searchContacts('&*');
         Test.stopTest();
 
         System.assert(returnedContacts.size() == 0, 'Was expecting to find no contacts');
@@ -77,7 +77,7 @@ private class SearchContactControllerTest {
         delete contacts;
 
         Test.startTest();
-        List<Contact> returnedContacts = SearchContactController.getContacts();
+        List<Contact> returnedContacts = AuraContactController.getContacts();
         Test.stopTest();
         
         System.assert(returnedContacts.size() == 0, 'Was expecting to find no contacts');

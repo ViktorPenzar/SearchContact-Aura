@@ -1,4 +1,4 @@
-public with sharing class SearchContactController {
+public with sharing class AuraContactController {
 
     @AuraEnabled(cacheable=true)
     public static List<Contact> getContacts() {
